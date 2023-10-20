@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
-from django.views.generic import View,TemplateView, DetailView, ListView
+from django.shortcuts import render
+from django.views.generic import View
 import random
+
 class IndexView(View):
     def get(self, request):
-        words = ['hello', 'Halo', 'Konnichiwa', 'Nihao',
-                 'Privet', 'Hola', 'Arriva', 'Oneo-haseyo', 'Bonjur']
-        word = random.choice(words)
-        return render(request, 'main.html', {'app': word} )
+        word = 'Hello, World!'
+        random_number = random.randint(1, 100)
+        return render(request, 'index.html', {'app': word + f' {random_number}'})
