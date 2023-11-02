@@ -1,5 +1,4 @@
-{% load static %}
-
+{%load static%}
 <!doctype html>
 <html lang="`en`">
 <head>
@@ -11,6 +10,18 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1 class="header">{{ app }}</h1>
+    <div>
+        <header>
+            <h1>hello</h1>
+        </header>
+        <main>
+            <div>
+        {% block main %} {% endblock main %}
+            </div>
+        </main>
+        <footer>
+            <h1>footer</h1>
+        </footer>
+    </div>
 </body>
 </html>
