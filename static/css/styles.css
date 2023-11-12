@@ -1,6 +1,62 @@
-.header {
-    color: pink ;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: #f6f7fb;
 }
 *{
-    background: #483d14 !important;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.logo-nav{
+    font-size: 60px;
+    color: var(--blue--next);
+}
+
+:root{
+    --green--right:green;
+    --red--wrong: red;
+    --blue--next: #4d58c0;
+    --dark-blue-bg:#19233e;
+}
+.blue_button{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    color: white;
+    background: var(--blue--next);
+}
+.red_button{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    color: white;
+}
+.blue_button:hover, .red_button:hover{
+    scale: 1.1;
+}
+.profile-btn{
+}
+.profile-btn img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.nav-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container{
+    max-width: 1300px;
+    margin: 0 auto auto;
 }
