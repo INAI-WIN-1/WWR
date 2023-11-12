@@ -1,5 +1,4 @@
-{% load static %}
-
+{%load static%}
 <!doctype html>
 <html lang="`en`">
 <head>
@@ -11,6 +10,18 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1 class="header">{{ app }}</h1>
+    <div>
+        <nav class="nav-wrapper container">
+            <div class="logo-nav">
+{#                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuL4RUA2C9N2ifsDhUc4nOLkRIoICzlPlgxfKYd2A&s" alt="">#}
+                <span>WWR</span>
+            </div>
+            <div class="right-nav-inner">
+                <a class=" profile-btn blue_button" href="#">
+                    Sign in
+                </a>
+            </div>
+        </nav>
+    </div>
 </body>
 </html>
