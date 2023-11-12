@@ -8,9 +8,9 @@ def indexView(request):
         return render(request, template_name='index.html', context={'posts': 'hello from tests'})
 
 
-def QuestionsView(request, id):
+def QuestionsView(request, level):
     if request.method == "GET":
-        tests = Test.objects.filter(level=id.upper())
+        tests = Test.objects.filter(level=level.upper())
         for test in tests:
             test.answers = test.answers.split(', ')
         return render(request, 'tests.html', {'tests': tests})
