@@ -1,0 +1,34 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<h1>Questions</h1>
+<ul>
+    {% for i in tests %}
+    <li>
+        <h2>Question - {{i.question}}</h2>
+        <div>
+            {% for answer in i.answers %}
+            <ul>
+                <li><strong>{{ answer }}</strong></li>
+            </ul>
+        {% endfor %}
+        </div>
+        <p><em><strong>Correct answer- {{i.correct_answer}}</strong></em></p>
+    </li>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    {% endfor %}
+</ul>
+</body>
+</html>
