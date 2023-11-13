@@ -23,11 +23,13 @@
         </div>
     </nav>
     <div class="main">
-        <div class="rating"></div>
+        <div class="rating">
+            <h3>Here will be the rating of users</h3>
+        </div>
         <div class="tests">
-            <a href="{% url 'questions' level='easy' %}" class="card"><p>Easy level</p></a>
-            <a href="{% url 'questions' level='medium' %}" class="card"><p>Medium level</p></a>
-            <a href="{% url 'questions' level='hard' %}" class="card"><p>Hard level</p></a>
+            <a href="{% url 'questions' level='easy' %}" class="card blue_button"><p>Easy level</p></a>
+            <a href="{% url 'questions' level='medium' %}" class="card blue_button"><p>Medium level</p></a>
+            <a href="{% url 'questions' level='hard' %}" class="card blue_button"><p>Hard level</p></a>
         </div>
     </div>
 </div>
