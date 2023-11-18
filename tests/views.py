@@ -24,4 +24,4 @@ def QuestionsView(request, level, id):
             next_id = id + 1
             return redirect('questions', level=level, id=next_id)
         else:
-            return redirect('main')
+            return render(request, 'tests.html', {'level': level, 'id': id, 'wrong_answer': True})
