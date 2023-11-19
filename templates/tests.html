@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,25 +10,44 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<h1>Questions</h1>
-<ul>
-    {% for i in tests %}
-    <li>
-        <h2>Question - {{i.question}}</h2>
-        <div>
-            {% for answer in i.answers %}
-            <ul>
-                <li><strong>{{ answer }}</strong></li>
-            </ul>
-        {% endfor %}
+{% if wrong_answer %}
+    <div class="modal">
+        <div class="modal-content">
+            <p>К сожалению, вы проиграли на {{ id }} вопросе с суммой ...</p>
+            <div class="btn-group">
+                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
+                <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Попробовать еще раз</a></button>
+            </div>
         </div>
-        <p><em><strong>Correct answer- {{i.correct_answer}}</strong></em></p>
-    </li>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    {% endfor %}
-</ul>
+    </div>
+{% endif %}
+{% if finish_game %}
+    <div class="modal">
+        <div class="modal-content">
+            <p>Поздравляю! Вы выйграли на {{ id }} вопросе и заработали ... $</p>
+            <div class="btn-group">
+                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if not wrong_answer and not finish_game %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="container test" style="text-align: center; margin-top: 30px;">
+        <h1 style="font-size: 14px; color: #ccc;">Question number {{ id }}</h1>
+        <h2 class="question">Question - {{ test.question }}</h2>
+        <div class="answers">
+            {% for answer in test.answers %}
+                <button class="answer-button" type="submit" name="selected_test"
+                        value="{{ answer }}|{{ test.correct_answer }}">
+                    <strong>{{ forloop.counter0|add:1 }}. {{ answer }}</strong>
+                </button>
+            {% endfor %}
+        </div>
+        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True">Забрать банк</button>
+    </div>
+</form>
+{% endif %}
 </body>
 </html>
