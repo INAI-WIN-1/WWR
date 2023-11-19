@@ -19,10 +19,19 @@
                 <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Попробовать еще раз</a></button>
             </div>
         </div>
-
     </div>
 {% endif %}
-{% if not wrong_answer %}
+{% if finish_game %}
+    <div class="modal">
+        <div class="modal-content">
+            <p>Поздравляю! Вы выйграли на {{ id }} вопросе и заработали ... $</p>
+            <div class="btn-group">
+                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if not wrong_answer and not finish_game %}
 <form method="POST">
     {% csrf_token %}
     <div class="container test" style="text-align: center; margin-top: 30px;">
@@ -36,10 +45,9 @@
                 </button>
             {% endfor %}
         </div>
-        <button class="button gr_button" style="font-size: 20px" type="button">Забрать банк</button>
+        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True">Забрать банк</button>
     </div>
 </form>
 {% endif %}
-
 </body>
 </html>
