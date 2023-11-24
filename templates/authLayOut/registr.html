@@ -1,12 +1,16 @@
     {% extends 'authLayOut/baseAuth.html' %}{%load static%}
 <!--  -->
 {% block base %}
-    <div>
+    <div class="auth_card_wrapper">
+        <a href="/">Home</a>
+        <div class="auth_card">
         <h1>Sign Up</h1>
         <form method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <button>Submit</button>
         </form>
+    <a href="/accounts/signin"> Sign in</a>
+        </div>
     </div>
 {% endblock %}
