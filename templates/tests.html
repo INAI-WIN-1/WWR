@@ -45,7 +45,7 @@
                 </button>
             {% endfor %}
         </div>
-        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True">Забрать банк</button>
+        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True" {% if id == 1 %}disabled{% endif %}>Забрать банк</button>
     </div>
 </form>
 {% endif %}
