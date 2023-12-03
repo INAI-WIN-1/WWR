@@ -13,10 +13,10 @@
 {% if wrong_answer %}
     <div class="modal">
         <div class="modal-content">
-            <p>К сожалению, вы проиграли на {{ id }} вопросе с суммой ...</p>
+            <p>Unfortunately, you lost on {{ id }}{% if id == 1 %}st{% endif %}{% if id == 2 %}nd{% endif %}{% if id > 2 %}th{% endif %} question with the amount of {{rating}} $</p>
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
-                <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Попробовать еще раз</a></button>
+                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
+                <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Try again</a></button>
             </div>
         </div>
     </div>
@@ -24,9 +24,9 @@
 {% if finish_game %}
     <div class="modal">
         <div class="modal-content">
-            <p>Поздравляю! Вы выйграли на {{ id }} вопросе и заработали ... $</p>
+            <p>Congratulations! You won on {{ id }}{% if id == 1 %}st{% endif %}{% if id == 2 %}nd{% endif %}{% if id > 2 %}th{% endif %} questions and you prize ist {{rating}} $</p>
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
+                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
             </div>
         </div>
     </div>
@@ -36,6 +36,7 @@
     {% csrf_token %}
     <div class="container test" style="text-align: center; margin-top: 30px;">
         <h1 style="font-size: 14px; color: #ccc;">Question number {{ id }}</h1>
+        <h2 class="rating-header">{{ rating }} $</h2>
         <h2 class="question">Question - {{ test.question }}</h2>
         <div class="answers">
             {% for answer in test.answers %}
@@ -45,7 +46,7 @@
                 </button>
             {% endfor %}
         </div>
-        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True" {% if id == 1 %}disabled{% endif %}>Забрать банк</button>
+        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True" {% if id == 1 %}disabled{% endif %}>Take a bank</button>
     </div>
 </form>
 {% endif %}
