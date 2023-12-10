@@ -14,8 +14,8 @@ class TestForm(forms.ModelForm):
 
 class TestAdmin(admin.ModelAdmin):
     form = TestForm
-    list_display = ('question', 'correct_answer')
-    search_fields = ['question', 'correct_answer']
+    list_display = ('question', 'correct_answer', 'level')
+    search_fields = ['question', 'correct_answer', 'level']
 
 
 admin.site.register(Test, TestAdmin)

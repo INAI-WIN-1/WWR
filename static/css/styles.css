@@ -175,9 +175,24 @@ a {
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
+    max-width: 650px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
+}
+
+.rating-header {
+    color: var(--blue--next);
+    font-size: 24px;
+}
+
+#timer {
+    width: 50px;
+    height: 50px;
+    background-color: var(--green--right);
+    border-radius: 50%;
+    line-height: 2;
+    color: #ffffff;
+    margin: 5px auto;
 }

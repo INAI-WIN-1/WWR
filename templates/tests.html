@@ -13,41 +13,71 @@
 {% if wrong_answer %}
     <div class="modal">
         <div class="modal-content">
-            <p>К сожалению, вы проиграли на {{ id }} вопросе с суммой ...</p>
+            <p>Unfortunately, you lost on
+                {{ id }}{% if id == 1 %}st{% elif id == 2 %}nd{% else %}th{% endif %} question with the amount
+                of {{ rating }} $</p>
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
-                <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Попробовать еще раз</a></button>
+                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
+                <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Try again</a></button>
             </div>
         </div>
     </div>
 {% endif %}
-{% if finish_game %}
+{% if finish_game or win_game %}
     <div class="modal">
         <div class="modal-content">
-            <p>Поздравляю! Вы выйграли на {{ id }} вопросе и заработали ... $</p>
+            {% if finish_game %}
+                <p>Congratulations! You won on
+                    {{ id }}{% if id == 1 %}st{% elif id == 2 %}nd{% else %}th{% endif %} question and you prize
+                    ist {{ rating }} $</p>
+            {% endif %}
+            {% if win_game %}
+                <p>Congratulations! You won {{ level }} difficulty and you prize ist {{ rating }} $!</p>
+            {% endif %}
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">На главную</a></button>
+                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
             </div>
         </div>
     </div>
 {% endif %}
-{% if not wrong_answer and not finish_game %}
-<form method="POST">
-    {% csrf_token %}
-    <div class="container test" style="text-align: center; margin-top: 30px;">
-        <h1 style="font-size: 14px; color: #ccc;">Question number {{ id }}</h1>
-        <h2 class="question">Question - {{ test.question }}</h2>
-        <div class="answers">
-            {% for answer in test.answers %}
-                <button class="answer-button" type="submit" name="selected_test"
-                        value="{{ answer }}|{{ test.correct_answer }}">
-                    <strong>{{ forloop.counter0|add:1 }}. {{ answer }}</strong>
-                </button>
-            {% endfor %}
+{% if not wrong_answer and not finish_game and not win_game %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container test" style="text-align: center; margin-top: 30px;">
+            <h1 style="font-size: 14px; color: #ccc;">Question number {{ id }}</h1>
+            <h2 class="rating-header">{{ rating }} $</h2>
+            <h2 id="timer">10</h2>
+            <h3 class="question">Question - {{ test.question }}</h3>
+            <div class="answers">
+                {% for answer in test.answers %}
+                    <button class="answer-button" type="submit" name="selected_test"
+                            value="{{ answer }}|{{ test.correct_answer }}">
+                        <strong>{{ forloop.counter0|add:1 }}. {{ answer }}</strong>
+                    </button>
+                {% endfor %}
+            </div>
+            <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True"
+                    {% if id == 1 %}disabled{% endif %}>Take a bank
+            </button>
         </div>
-        <button class="button gr_button" style="font-size: 20px" type="submit" name="finish_game" value="True">Забрать банк</button>
-    </div>
-</form>
+    </form>
 {% endif %}
+<form method="POST" id="timerForm">
+    {% csrf_token %}
+    <input type="hidden" name="time_lost" value="True">
+</form>
+<script>
+    let seconds = 9;
+
+    const timerInterval = setInterval(() => {
+        document.getElementById('timer').innerHTML = seconds;
+        seconds--;
+
+        if (seconds < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timerForm').submit();
+        }
+    }, 1000);
+</script>
 </body>
 </html>
