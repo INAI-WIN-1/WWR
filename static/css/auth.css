@@ -62,16 +62,53 @@ a {
     background: #6d75c4;
 }
 
-.auth_card{
-    background: var(--blue--next);
-    color: white;
-    width: 700px;
-}
-
-.auth_card_wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.auth_card_wrapper {
+        background-color: #F0F2F5; /* Цвет фона формы */
+        padding: 20px; /* Добавление внутреннего отступа */
+        text-align: center; /* Выравнивание по центру */
     height: 100vh;
-}
+    }
+
+    .auth_card {
+        background-color: #FFFFFF; /* Цвет фона блока с формой */
+        padding: 20px; /* Добавление внутреннего отступа */
+        border-radius: 10px; /* Закругление углов блока */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень блока */
+        max-width: 400px; /* Максимальная ширина блока */
+        margin: 0 auto; /* Центрирование блока */
+    }
+
+    .auth_card h1 {
+        color: #1877F2; /* Цвет заголовка формы, похожий на Facebook */
+    }
+
+    .auth_card form {
+        margin-top: 20px; /* Отступ сверху для формы */
+    }
+    .auth_card form li{
+        color: darkgrey;
+    }
+
+    .auth_card button {
+        background-color: #1877F2; /* Цвет кнопки, похожий на Facebook */
+        color: #FFFFFF; /* Цвет текста на кнопке */
+        padding: 10px 20px; /* Поля вокруг текста на кнопке */
+        border: none; /* Убираем границу у кнопки */
+        border-radius: 5px; /* Закругление углов кнопки */
+        cursor: pointer; /* Изменение формы указателя при наведении на кнопку */
+        font-weight: bold; /* Жирный текст на кнопке */
+    }
+
+    .auth_card button:hover {
+        background-color: #135492; /* Цвет кнопки при наведении */
+    }
+
+    .auth_card a {
+        color: #1877F2; /* Цвет текста ссылки, похожий на Facebook */
+        text-decoration: none; /* Убираем подчеркивание у ссылки */
+        font-weight: bold; /* Жирный текст ссылки */
+    }
+
+    .auth_card a:hover {
+        text-decoration: underline; /* Подчеркивание ссылки при наведении */
+    }
