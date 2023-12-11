@@ -17,6 +17,13 @@
             <span>WWR</span>
         </div>
         <div class="right-nav-inner">
+            {% if user_data.is_authenticated %}
+                <div>
+                    <p>Your balance</p>
+                </div>
+            {% endif %}
+
+
             <a class=" profile-btn button blue_button" href="/accounts/signin">
                 Sign in
             </a>
@@ -24,7 +31,26 @@
     </nav>
     <div class="main">
         <div class="rating">
-            <h3>Here will be the rating of users</h3>
+            <table>
+                <caption>RATING</caption>
+                <tr>
+                    <td>
+                        <p>1 - Imanbek: 10000000$</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2 - Vlad: 10000$</td>
+                </tr>
+                <tr>
+                    <td>3 - Tomas Edison: 1000$</td>
+                </tr>
+                <tr>
+                    <td>4 - Lesha: 500$</td>
+                </tr>
+                <tr>
+                    <td>5 - Nuraaly: 400$</td>
+                </tr>
+            </table>
         </div>
         <div class="tests">
             <a href="{% url 'questions' level='easy' id=1 %}" class="card button blue_button"><p>Easy level</p></a>

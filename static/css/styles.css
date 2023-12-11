@@ -90,12 +90,7 @@ a {
     margin-top: 100px;
 }
 
-.rating {
-    width: 40%;
-    height: 400px;
-    background: var(--blue--next);
-    border-radius: 10px;
-}
+
 
 .card {
     display: block;
@@ -196,3 +191,33 @@ a {
     color: #ffffff;
     margin: 5px auto;
 }
+.rating {
+        background-color: var(--blue--next); /* Цвет фона блока с рейтингом */
+        padding: 20px 50px; /* Добавление внутреннего отступа */
+        border-radius: 10px; /* Закругление углов блока */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень блока */
+        max-width: 400px; /* Максимальная ширина блока */
+    }
+.rating caption{
+    margin-bottom: 30px;
+}
+    .rating table {
+        width: 100%; /* Ширина таблицы на 100% */
+        border-collapse: collapse; /* Убираем отступы между ячейками */
+        margin-bottom: 10px; /* Отступ снизу таблицы */
+        color: white;
+        font-size: 22px;
+    }
+
+    .rating table tr td {
+        padding: 10px; /* Внутренний отступ в ячейках */
+        border-bottom: 1px solid #ddd; /* Горизонтальная линия между строками */
+    }
+
+    .rating table tr:last-child td {
+        border-bottom: none; /* Убираем линию после последней строки */
+    }
+
+    .rating table p {
+        margin: 0; /* Убираем внешний отступ у абзаца в ячейке */
+    }
