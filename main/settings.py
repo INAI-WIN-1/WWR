@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = reverse_lazy('main')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 # Application definition
 
 

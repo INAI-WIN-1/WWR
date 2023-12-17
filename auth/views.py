@@ -21,7 +21,7 @@ def my_view(request):
 
 class UserCreateView(CreateView):
     form_class = UserSignUpForm
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('home')
     template_name ='authLayOut/registr.html'
 
 
