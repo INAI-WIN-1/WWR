@@ -9,5 +9,6 @@
 </head>
 <body>
     <h1>{{ user.username }}</h1>
+    <button onclick="location.href='{% url 'logout' %}?next=/accounts/login'">logout</button>
 </body>
 </html>
