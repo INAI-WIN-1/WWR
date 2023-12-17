@@ -26,8 +26,12 @@ class UserCreateView(CreateView):
 
 
 
-class CustomLoginView(LoginView):
-    template_name = 'authLayOut/login.html'
+# class CustomLoginView(LoginView):
+#     template_name = 'authLayOut/login.html'
+#
+#     def get_success_url(self):
+#         return reverse_lazy('main')
 
-    def get_success_url(self):
-        return reverse_lazy('main')
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html')

@@ -1,0 +1,27 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <div class="auth_card_wrapper">
+         <a href="/">Home</a>
+        <div class="auth_card">
+            <h1>Sign In</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.errors  }}
+                <button>Submit</button>
+            </form>
+            <a href="/accounts/signup"> Sign up</a>
+        </div>
+    </div>
+</body>
+</html>
