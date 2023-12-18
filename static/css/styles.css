@@ -221,3 +221,27 @@ a {
     .rating table p {
         margin: 0; /* Убираем внешний отступ у абзаца в ячейке */
     }
+
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.history {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.game-card {
+    width: 48%;
+    margin-bottom: 10px;
+    border: 2px solid #939292;
+    border-radius: 10px;
+    padding: 10px;
+}
