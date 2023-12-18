@@ -6,7 +6,8 @@ import auth.urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tests.urls')),
-    path('accounts/', include(auth.urls))
+    path('', include(auth.urls)),
+    path('accounts/', include('django.contrib.auth.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

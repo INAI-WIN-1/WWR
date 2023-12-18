@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django import forms
 
 class UserSignUpForm(UserCreationForm):
-    mail = forms.EmailField(required=True)
+    email = forms.EmailField(required=True)
     class Meta:
         model = User
         fields = [
             'username',
-            'mail',
+            'email',
             'password1',
             'password2',
         ]
