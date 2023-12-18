@@ -1,36 +1,6 @@
 {% load static %}
-<!doctype html>
-<html lang="`en`">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+{% include 'header.html' %}
 <div class="container">
-    <nav class="nav-wrapper">
-        <div class="logo-nav">
-            {#                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuL4RUA2C9N2ifsDhUc4nOLkRIoICzlPlgxfKYd2A&s" alt="">#}
-            <span>WWR</span>
-        </div>
-        {% if user.is_authenticated %}
-                <div>
-                    <p>Your balance</p>
-                </div>
-            {% endif %}
-        <div class="right-nav-inner">
-             {%  if user.is_authenticated  %}
-                <a href="/profile" class=" profile-btn button blue_button">{{ user.username }}</a>
-             {% else %}
-                <a class=" profile-btn button blue_button" href="/accounts/login">
-                    Sign in
-                </a>
-            {% endif %}
-        </div>
-    </nav>
     <div class="main">
         <div class="rating">
             <table>

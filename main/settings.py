@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 # Application definition
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tests',
+    'custom_profile',
+    'home_page'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -17,7 +17,7 @@
                 {{ id }}{% if id == 1 %}st{% elif id == 2 %}nd{% else %}th{% endif %} question with the amount
                 of {{ rating }} $</p>
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
+                <button class="button blue_button"><a href="{% url 'home' %}">Homepage</a></button>
                 <button class="button gr_button"><a href="{% url 'questions' level=level id=1 %}">Try again</a></button>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <p>Congratulations! You won {{ level }} difficulty and you prize ist {{ rating }} $!</p>
             {% endif %}
             <div class="btn-group">
-                <button class="button blue_button"><a href="{% url 'main' %}">Homepage</a></button>
+                <button class="button blue_button"><a href="{% url 'home' %}">Homepage</a></button>
             </div>
         </div>
     </div>

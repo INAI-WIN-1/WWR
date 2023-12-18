@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,9 +7,26 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>profile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+<div class="container">
     <h1>{{ user.username }}</h1>
-    <button onclick="location.href='{% url 'logout' %}?next=/accounts/login'">logout</button>
+    <form action="{% url 'logout' %}?next=/accounts/login" method="post">
+        {% csrf_token %}
+        <button class="blue_button button">logout</button>
+    </form>
+    <h3>Gaming history</h3>
+    <div class="history">
+        {% for game in games %}
+            <div class="game-card">
+                <p>Status: <span class="{% if game.status %}green{% else %}red{% endif %}">
+        {% if game.status %}Win{% else %}Lose{% endif %}
+    </span></p>
+                <p>Sum: {{ game.rating }} $</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 </body>
 </html>
