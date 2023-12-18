@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tests',
-    'custom_profile'
+    'custom_profile',
+    'home_page'
 ]
 
 

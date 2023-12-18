@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+<div class="container" style="text-align: center; padding-bottom: 30px">
+    <h1>{{ content.title }}</h1>
+    <div style="margin-bottom: 30px;">
+        <img alt="main" src="{{ content.image.url }}">
+    </div>
+    <div style="margin-bottom: 30px; font-size: 20px">
+        {{ content.text1 }}
+    </div>
+    <div style="margin-bottom: 30px; font-size: 18px">
+        {{ content.text2 }}
+    </div>
+    <div style="margin-bottom: 30px; font-size: 18px">
+        {{ content.text3 }}
+    </div>
+    <div style="margin-bottom: 20px; font-size: 18px">
+        <a class="button blue_button" href="tests/">Start Game</a>
+    </div>
+    <div style="margin-bottom: 20px; font-size: 18px">
+        {{ content.text4 }}
+    </div>
+    <div style="margin-bottom: 20px; font-size: 18px">
+        {{ content.text5 }}
+    </div>
+    <div style="margin-bottom: 20px; font-size: 18px">
+        {{ content.text6 }}
+    </div>
+    {% if not user.is_authenticated %}
+        <div>
+            <a class="profile-btn button blue_button" href="/accounts/signin">
+                Sign in
+            </a>
+        </div>
+    {% endif %}
+
+</div>
