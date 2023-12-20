@@ -7,13 +7,7 @@ from custom_profile.models import Game
 
 @login_required
 def profile_view(request):
-    id = request.user.id
+    user = request.user
 
-    try:
-        user = User.objects.get(id=id)
-        games = Game.objects.filter(user=user)
-
-    except User.DoesNotExit:
-        games = []
-
+    games = Game.objects.filter(user=user)
     return render(request, 'profile.html', {'games': games})
