@@ -208,7 +208,15 @@ a {
         color: white;
         font-size: 22px;
     }
-
+    .bg-header{
+        width: 100vw;
+        height: 100vh;
+    }
+    .bg-header img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
     .rating table tr td {
         padding: 10px; /* Внутренний отступ в ячейках */
         border-bottom: 1px solid #ddd; /* Горизонтальная линия между строками */

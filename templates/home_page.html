@@ -1,8 +1,8 @@
 {% include 'header.html' %}
 <div class="container" style="text-align: center; padding-bottom: 30px">
     <h1>{{ content.title }}</h1>
-    <div style="margin-bottom: 30px;">
-        <img alt="main" src="{{ content.image.url }}">
+    <div class="bg-header" style="margin-bottom: 30px;width: 100vw; height: 100vh;">
+        <img style="object-fit: cover; height: 100%; width: 100%; position: relative; left: -70px "  src=".././media/im.png" alt="">
     </div>
     <div style="margin-bottom: 30px; font-size: 20px">
         {{ content.text1 }}
