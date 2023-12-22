@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from custom_profile.models import Game, CustomUser
+from custom_profile.models import Game
 
 admin.site.register(Game)
-admin.site.register(CustomUser)
