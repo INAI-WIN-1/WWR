@@ -12,6 +12,7 @@
 <body>
 <div class="container">
     <h1>{{ user.username }}</h1>
+    <h1>Balance {{ user.balance }} $</h1>
     <form action="{% url 'logout' %}?next=/accounts/login" method="post">
         {% csrf_token %}
         <button class="blue_button button">logout</button>
@@ -24,6 +25,7 @@
         {% if game.status %}Win{% else %}Lose{% endif %}
     </span></p>
                 <p>Sum: {{ game.rating }} $</p>
+                <p>Datetime: {{ game.created_at }}</p>
             </div>
         {% endfor %}
     </div>

@@ -17,15 +17,22 @@ ratings_by_level = {
 }
 
 def create_game (user, status, rating):
-    if not user:
-        return
+    if user.is_authenticated:
+        game = Game(
+            user=user,
+            status=status,
+            rating=rating,
+        )
+        game.save()
 
-    game = Game(
-        user=user,
-        status=status,
-        rating=rating,
-    )
-    game.save()
+def change_balance (user, rating):
+    if user.is_authenticated:
+        user.balance += rating
+        user.save()
+
+
+
+
 
 def QuestionsView(request, level, id):
     level = level.upper()
@@ -53,6 +60,7 @@ def QuestionsView(request, level, id):
         if len(chosen_tests) < id:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
+            change_balance(request.user, rating)
             create_game(request.user, True, rating)
             return render(request, 'tests.html', {'finish_game': True, 'id': index, 'rating': rating})
         test = chosen_tests[id-1]
@@ -72,8 +80,8 @@ def QuestionsView(request, level, id):
         if finish_game:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
-            # здесь будет логика зачисления денег на баланс пользователя
             create_game(request.user, True, ratings[id-2])
+            change_balance(request.user, ratings[id-2])
             return render(request, 'tests.html', {'finish_game': True, 'id': index, 'rating': ratings[id - 2]})
         selected_test = request.POST.get('selected_test')
         selected_answer, correct_answer = selected_test.split('|')
@@ -83,6 +91,7 @@ def QuestionsView(request, level, id):
                 request.session['chosen_tests'] = []
                 request.session['completed_questions'] = 0
                 create_game(request.user, True, ratings[9])
+                change_balance(request.user, ratings[9])
                 return render(request, 'tests.html', {'win_game': True, 'level': level.lower(),'id': index, 'rating': ratings[9]})
             request.session['completed_questions'] = id
             next_id = id + 1
