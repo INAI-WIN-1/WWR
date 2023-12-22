@@ -8,6 +8,6 @@ from custom_profile.models import Game
 @login_required
 def profile_view(request):
     user = request.user
-
+    print(user)
     games = Game.objects.filter(user=user)
     return render(request, 'profile.html', {'games': games})
