@@ -12,7 +12,6 @@
 <body>
 <div class="container">
     <h1>{{ user.username }}</h1>
-    <h1>Balance {{ user.balance }} $</h1>
     <form action="{% url 'logout' %}?next=/accounts/login" method="post">
         {% csrf_token %}
         <button class="blue_button button">logout</button>

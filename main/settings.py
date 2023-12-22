@@ -134,4 +134,3 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
-AUTH_USER_MODEL = 'custom_profile.CustomUser'
