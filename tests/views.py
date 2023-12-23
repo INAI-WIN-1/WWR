@@ -1,7 +1,7 @@
 import random
 from django.shortcuts import render, get_object_or_404, redirect
 
-from custom_profile.models import Game
+from custom_profile.models import Game, Profile
 from tests.models import Test
 
 
@@ -17,7 +17,6 @@ ratings_by_level = {
 }
 
 def create_game (user, status, rating):
-    print(f"Creating game for user: {user.username} ({user.pk})")  # Отладочный вывод
     if user.is_authenticated:
         game = Game.objects.create(
             user=user,
@@ -25,12 +24,19 @@ def create_game (user, status, rating):
             rating=rating,
         )
 
+def update_balance (user, rating):
+    if user.is_authenticated:
+        profile = Profile.objects.get(user=user)
+        profile.balance += rating
+        profile.save()
+
 
 def QuestionsView(request, level, id):
     level = level.upper()
     ratings = ratings_by_level[level]
     index = id - 1
     rating = ratings[id - 1]
+    user = request.user
     if request.method == "GET":
         chosen_tests = request.session.get('chosen_tests', [])
         completed_questions = request.session.get('completed_questions', 0)
@@ -52,7 +58,8 @@ def QuestionsView(request, level, id):
         if len(chosen_tests) < id:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
-            create_game(request.user, True, rating)
+            create_game(user, True, rating)
+            update_balance(user, rating)
             return render(request, 'tests.html', {'finish_game': True, 'id': index, 'rating': rating})
         test = chosen_tests[id-1]
 
@@ -65,13 +72,14 @@ def QuestionsView(request, level, id):
         if time_lost:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
-            create_game(request.user, False, rating)
+            create_game(user, False, rating)
             return render(request, 'tests.html', {'level': level, 'id': id, 'wrong_answer': True, 'rating': rating})
 
         if finish_game:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
-            create_game(request.user, True, ratings[id-2])
+            create_game(user, True, ratings[id-2])
+            update_balance(user, ratings[id-2])
             return render(request, 'tests.html', {'finish_game': True, 'id': index, 'rating': ratings[id - 2]})
         selected_test = request.POST.get('selected_test')
         selected_answer, correct_answer = selected_test.split('|')
@@ -80,7 +88,8 @@ def QuestionsView(request, level, id):
             if id == 10:
                 request.session['chosen_tests'] = []
                 request.session['completed_questions'] = 0
-                create_game(request.user, True, ratings[9])
+                create_game(user, True, ratings[9])
+                update_balance(user, ratings[9])
                 return render(request, 'tests.html', {'win_game': True, 'level': level.lower(),'id': index, 'rating': ratings[9]})
             request.session['completed_questions'] = id
             next_id = id + 1
@@ -88,5 +97,5 @@ def QuestionsView(request, level, id):
         else:
             request.session['chosen_tests'] = []
             request.session['completed_questions'] = 0
-            create_game(request.user, False, rating)
+            create_game(user, False, rating)
             return render(request, 'tests.html', {'level': level, 'id': id, 'wrong_answer': True, 'rating': rating})
