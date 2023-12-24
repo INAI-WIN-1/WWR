@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
-from custom_profile.models import Game
+from custom_profile.models import Game, Profile
 
 
 @login_required
