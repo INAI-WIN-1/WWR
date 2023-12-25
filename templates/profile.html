@@ -10,14 +10,28 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<div class="container">
-    <h1>{{ user.username }}</h1>
-    <h2>Balance: {{ user.profile.balance }} $</h2>
-    <form action="{% url 'logout' %}?next=/accounts/login" method="post">
-        {% csrf_token %}
-        <button class="blue_button button">logout</button>
-    </form>
-    <h3>Gaming history</h3>
+<div class="container" style="margin-top: 50px">
+    <div class="profile">
+        <div style="display: flex">
+            <div class="img-container">
+                <img width="150" height="150" alt="{{ user.username }}" src="
+                        {% if user.profile.avatar %}{{ user.profile.avatar.url }}{% else %}../../media/empty.webp{% endif %}">
+                <a href="/profile/{{user.profile.id}}/update/" style="display: block; margin-top: 10px; text-align: center" class="button gr_button">
+                    {% if user.profile.avatar %}Update{% else %}Add{% endif %}
+                </a>
+            </div>
+            <h1>{{ user.username|capfirst }}</h1>
+            <form action="{% url 'logout' %}?next=/accounts/login" method="post">
+                {% csrf_token %}
+                <button class="blue_button button">Logout</button>
+            </form>
+        </div>
+        <div>
+            <h2>Balance: <span class="green">{{ user.profile.balance }} $</span></h2>
+            <a class="button blue_button" href="{% url 'home' %}" style="display: block; text-align: center; margin-top: 20px;">Start Game</a>
+        </div>
+    </div>
+    <h2>Gaming history</h2>
     <div class="history">
         {% for game in games %}
             <div class="game-card">
