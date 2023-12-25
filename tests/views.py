@@ -5,9 +5,47 @@ from custom_profile.models import Game, Profile
 from tests.models import Test
 
 
+# views.py
+
+from django.shortcuts import render
+from custom_profile.models import Profile
+
+# def indexView(request):
+#     if request.user.is_authenticated:
+#         cuser = request.user
+#         try:
+#             cuser_profile = Profile.objects.get(user=cuser)
+#         except Profile.DoesNotExist:
+#             cuser_profile = None
+#         profiles = Profile.objects.all().order_by('-balance')
+#         ranked_profiles = [(index + 1, profile) for index, profile in enumerate(profiles)]
+#         return render(request, template_name='index.html', context={'ranked_profiles': ranked_profiles, 'cuser_profile': cuser_profile})
+#     else:
+#         profiles = Profile.objects.all().order_by('-balance')
+#         ranked_profiles = [(index + 1, profile) for index, profile in enumerate(profiles)]
+#         return render(request, template_name='index.html', context={'ranked_profiles': ranked_profiles, 'cuser_profile': None})
+# views.py
+
+from django.shortcuts import render
+from custom_profile.models import Profile
+
+
 def indexView(request):
-    if request.method == "GET":
-        return render(request, template_name='index.html', context={'posts': 'hello from tests'})
+    if request.user.is_authenticated:
+        cuser = request.user
+        try:
+            cuser_profile = Profile.objects.get(user=cuser)
+        except Profile.DoesNotExist:
+            cuser_profile = None
+        profiles = Profile.objects.all().order_by('-balance')
+        cuser_rank = list(profiles).index(cuser_profile) + 1 if cuser_profile else None
+        ranked_profiles = [(index + 1, profile) for index, profile in enumerate(profiles)]
+        return render(request, template_name='index.html',
+                      context={'ranked_profiles': ranked_profiles, 'cuser_profile': cuser_profile,
+                               'cuser_rank': cuser_rank})
+    else:
+        return render(request, template_name='index.html',
+                      context={'ranked_profiles': [], 'cuser_profile': None, 'cuser_rank': None})
 
 
 ratings_by_level = {
