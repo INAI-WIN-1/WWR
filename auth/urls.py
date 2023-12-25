@@ -1,6 +1,6 @@
 from django.urls import path, include
 from auth.views import UserCreateView
-from django.contrib.auth.views import LoginView, LogoutView, logout_then_login
+from django.contrib.auth.views import logout_then_login
 
 urlpatterns = [
     path('signup/',UserCreateView.as_view(), name='signUp'),

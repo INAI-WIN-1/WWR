@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
 
-from custom_profile.models import Game, Profile
+from .forms import ProfileForm
+from .models import Game, Profile
 
 
 @login_required
@@ -11,3 +12,17 @@ def profile_view(request):
 
     games = Game.objects.filter(user=user)
     return render(request, 'profile.html', {'games': games})
+
+
+class ProfileUpdateView(generic.UpdateView):
+    template_name = "profile_update.html"
+    form_class = ProfileForm
+    success_url = "/profile/"
+
+    def get_object(self, **kwargs):
+        profile_id = self.kwargs.get("id")
+        return get_object_or_404(Profile, id=profile_id)
+
+    def form_valid(self, form):
+        return super(ProfileUpdateView, self).form_valid(form=form)
+
