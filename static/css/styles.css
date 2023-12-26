@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-
+tfoot tr{
+    background: white;
+    color: #4d58c0;
+}
+tfoot{
+    border-radius: 10px;
+}
 body {
     padding: 0;
     margin: 0;

@@ -4,7 +4,12 @@ from django.views import generic
 
 from .forms import ProfileForm
 from .models import Game, Profile
+from django.shortcuts import render
+from custom_profile.models import Game, Profile
 
+# def rating_list(request):
+#     profiles = Profile.objects.all()
+#     return render(request, 'ratings.html', {'profiles': profiles})
 
 @login_required
 def profile_view(request):
