@@ -9,8 +9,12 @@ from django.utils import timezone
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.PositiveIntegerField(default=0, validators=[MaxValueValidator(3000000), MinValueValidator(0)])
+    avatar = models.ImageField(blank=True, upload_to='profile/')
+
     def __str__(self):
         return self.user.username
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

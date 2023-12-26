@@ -247,7 +247,7 @@ a {
 .history {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px;
     flex-wrap: wrap;
 }
 
@@ -257,4 +257,14 @@ a {
     border: 2px solid #939292;
     border-radius: 10px;
     padding: 10px;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.img-container {
+    margin-right: 10px;
 }
