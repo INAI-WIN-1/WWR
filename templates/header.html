@@ -18,7 +18,7 @@
         </div>
         {% if user.is_authenticated %}
             <div>
-                <p>Your balance</p>
+                <p>Your balance: <span class="green">{{ user.profile.balance }} $</span></p>
             </div>
         {% endif %}
         <div class="right-nav-inner">
